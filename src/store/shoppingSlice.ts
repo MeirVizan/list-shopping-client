@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const apiUrl = 'https://shopping-list-server-eeded9691076.herokuapp.com';
+
 interface Product {
   name: string;
   categoryId: number;
@@ -29,21 +31,18 @@ const initialState: ShoppingState = {
 };
 
 export const fetchCategories = createAsyncThunk('shopping/fetchCategories', async () => {
-  const response = await axios.get('http://localhost:5000/api/categories');
-  console.log('response.data', response.data)
+  const response = await axios.get(`${apiUrl}/api/categories`);
   return response.data;
 });
 
 export const fetchPurchases = createAsyncThunk('shopping/fetchPurchases', async () => {
-  const response = await axios.get('http://localhost:5000/api/purchases');
-  console.log('response.data', response.data)
+  const response = await axios.get(`${apiUrl}/api/purchases`);
   return response.data;
 });
 
 export const finishOrder = createAsyncThunk('shopping/finishOrder', async (_, { getState }) => {
   const state = getState() as { shopping: ShoppingState };
-  const response = await axios.post('http://localhost:5000/api/order', { products: state.shopping.products });
-  console.log('Order sent:', response.data);
+  const response = await axios.post(`${apiUrl}/api/order`, { products: state.shopping.products });
   return response.data;
 });
 

@@ -8,8 +8,7 @@ import { FinishOrderButton } from './FinishOrderButton'
 
 const ShoppingList = () => {
   return (
-    <Container>
-      {/* <Navbar /> */}
+    <Container className='flex col gap'>
       <ItemsTotal />
       <ProductInput />
       <ProductList />

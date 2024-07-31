@@ -1,17 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
-import { List, ListItem, ListItemText } from '@mui/material';
-import { groupBy, translate } from './utils';
 import './ComponentStyle.css';
 import ProductOfCategory from './ProductOfCategory';
+import { groupBy } from './utils';
 
 export const ProductList: React.FC = () => {
   const products = useSelector((state: RootState) => state.shopping.products);
-
-  console.log('products', products)
-  const prodectSaperedly = groupBy(products, 'category');
-  console.log('prodectSaperedly', prodectSaperedly)
+  const prodectSaperedly = groupBy(products, 'categoryId');
 
   return (
     <div className='product-list-wapper'>

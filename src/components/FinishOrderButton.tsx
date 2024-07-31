@@ -10,30 +10,36 @@ import { useNavigate } from "react-router-dom";
 export const FinishOrderButton: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const clientMassege = useSelector((state: RootState) => state.shopping.clientMassege);
+  const products = useSelector((state: RootState) => state.shopping.products);
   const navigate = useNavigate();
 
   const handleFinishOrder = () => {
-    dispatch(finishOrder());
+    if (products.length > 0) {
+      dispatch(finishOrder());
+    } else {
+      alert('לא ניתן לבצע הזמנה ללא מוצרים')
+    }
   };
 
   return (
-    <div className='btn-order'>
+    <div >
       {clientMassege !== '' ?
-        <div>
+        <div className=' '>
           <div className='client-massege'>
             {clientMassege}
           </div>
-          <div>
-
-            <button className='nvg-older-order' onClick={()=>navigate('/purchasehistory')} >
+          <div className='view-order'>
+            <Button className='nvg-older-order' variant="contained" color="primary" onClick={() => navigate('/purchasehistory')} >
               {translate('View orders')}
-            </button>
+            </Button>
           </div>
         </div>
         :
-        <Button variant="contained" color="primary" onClick={handleFinishOrder}>
+        <div className='flex j-end'>
+        <Button sx={{margin: '1rem'}} variant="contained" color="primary" onClick={handleFinishOrder}>
           {translate('Finish Order')}
         </Button>
+        </div>
       }
     </div>
   );

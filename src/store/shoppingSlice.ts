@@ -1,9 +1,20 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+interface Product {
+  name: string;
+  categoryId: number;
+  quantity: number;
+}
+
+interface categorie{
+  name: string;
+  id: number;
+}
+
 interface ShoppingState {
-  categories: string[];
-  products: { name: string; category: string; quantity: number }[];
+  categories: categorie[];
+  products: Product[];
   purchases: any[];
   totalItems: number;
   clientMassege: string;
@@ -41,8 +52,8 @@ const shoppingSlice = createSlice({
   name: 'shopping',
   initialState,
   reducers: {
-    addProduct: (state, action: PayloadAction<{ name: string; category: string }>) => {
-      const existingProduct = state.products.find(p => p.name === action.payload.name);
+    addProduct: (state, action: PayloadAction<{ name: string; categoryId: number }>) => {
+      const existingProduct = state.products.find(p => p.name === action.payload.name && p.categoryId === action.payload.categoryId);
       if (existingProduct) {
         existingProduct.quantity += 1;
       } else {

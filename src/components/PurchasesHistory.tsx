@@ -5,6 +5,10 @@ import { AppDispatch, RootState } from '../store';
 import PurchaseDetail from './PurchaseDetail';
 import { groupByDate } from './utils';
 import { useNavigate } from 'react-router';
+import { Container } from '@mui/material';
+import { translate } from './utils';
+import './ComponentStyle.css';
+
 
 const PurchasesHistory: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -16,16 +20,15 @@ const PurchasesHistory: React.FC = () => {
   }, [dispatch]);
 
   const purchasesByDate = groupByDate(purchases)
-  console.log('purchasesByDate', purchasesByDate);
   return (
-    <div>
-        <div>
-            <button onClick={()=>navigate('/')}>New order</button>
+    <Container>
+        <div className='new-order-btn flex j-end'>
+            <button onClick={()=>navigate('/')}>{translate('New order')}</button>
         </div>
       {purchasesByDate.map(purchase => (
         <PurchaseDetail purchase={purchase.data} date={purchase.datetime} />
       ))}
-    </div>
+    </Container>
   );
 };
 

@@ -19,14 +19,10 @@ interface PurchaseProps {
 
 const PurchaseDetail = ({ purchase, date }:PurchaseProps) => {
 
-
-console.log('purchase', purchase)
-const prodectSaperedly = groupBy(purchase, 'category');
-  console.log('PurchaseDetail', prodectSaperedly)
-
+const prodectSaperedly = groupBy(purchase, 'categoryId');
   return (
     <div className='product-list-wapper'>
-      <h2>{"הזמנה"+" - " + moment(date).format("YYYY/MM/DD kk:mm:ss")}</h2>
+      <h2>{"הזמנה"+" - " + moment(date).format("DD/MM/YY kk:mm")}</h2>
       <ProductOfCategory prodectSaperedly={prodectSaperedly} />
     </div>
   );

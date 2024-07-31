@@ -1,24 +1,24 @@
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import React, { useState } from 'react';
-import { TextField, Button, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
 import { addProduct } from '../store/shoppingSlice';
-import { translate } from './utils';
 import './ComponentStyle.css';
+import { translate } from './utils';
 
 
 export const ProductInput: React.FC = () => {
   const [productName, setProductName] = useState('');
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState<number>(0);
   const categories = useSelector((state: RootState) => state.shopping.categories);
   const dispatch = useDispatch();
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (productName && category) {
-      dispatch(addProduct({ name: productName, category }));
+      dispatch(addProduct({ "name": productName, "categoryId": category }));
       setProductName('');
-      setCategory('');
+      setCategory(0);
     }
   };
 
@@ -39,11 +39,11 @@ export const ProductInput: React.FC = () => {
             labelId="category-label"
             value={category}
             label="Category"
-            onChange={(e) => setCategory(e.target.value as string)}
+            onChange={(e) => setCategory(e.target.value as number)}
             required
           >
             {categories.map((cat) => (
-              <MenuItem className='menu-item' key={cat} value={cat}>{translate(cat)}</MenuItem>
+              <MenuItem className='menu-item' key={cat.id} value={cat.id}>{translate(cat.name)}</MenuItem>
             ))}
           </Select>
         </FormControl>
@@ -51,7 +51,7 @@ export const ProductInput: React.FC = () => {
           {translate('add')}
         </Button>
       </form>
-      <hr className='hr'/>
+      <hr className='hr' />
     </div>
   );
 };

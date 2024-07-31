@@ -1,6 +1,7 @@
 #################################################################
 # Shopping List Frontend Project
 #################################################################
+
 This project provides a frontend for a shopping list application where users can manage their shopping experiences by adding products, viewing purchases, and checking out their shopping baskets. It utilizes React with TypeScript and Material-UI for a responsive design that works well on both desktop and mobile devices.
 
 ## Features

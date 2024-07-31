@@ -18,6 +18,7 @@ const cacheRtl = createCache({
   key: 'muirtl',
   stylisPlugins: [prefixer, rtlPlugin],
 });
+
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 

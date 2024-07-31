@@ -4,10 +4,12 @@ import { fetchPurchases } from '../store/shoppingSlice';
 import { AppDispatch, RootState } from '../store';
 import PurchaseDetail from './PurchaseDetail';
 import { groupByDate } from './utils';
+import { useNavigate } from 'react-router';
 
 const PurchasesHistory: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const purchases = useSelector((state: RootState) => state.shopping.purchases);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchPurchases());
@@ -17,6 +19,9 @@ const PurchasesHistory: React.FC = () => {
   console.log('purchasesByDate', purchasesByDate);
   return (
     <div>
+        <div>
+            <button onClick={()=>navigate('/')}>New order</button>
+        </div>
       {purchasesByDate.map(purchase => (
         <PurchaseDetail purchase={purchase.data} date={purchase.datetime} />
       ))}

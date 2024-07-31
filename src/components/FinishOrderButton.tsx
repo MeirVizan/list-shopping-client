@@ -3,32 +3,32 @@ import { Button } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { finishOrder } from '../store/shoppingSlice';
 import { translate } from './utils';
-import { RootState } from '../store';
+import { AppDispatch, RootState } from '../store';
+import './ComponentStyle.css';
+import { useNavigate } from "react-router-dom";
 
 export const FinishOrderButton: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const clientMassege = useSelector((state: RootState) => state.shopping.clientMassege);
+  const navigate = useNavigate();
 
   const handleFinishOrder = () => {
     dispatch(finishOrder());
   };
 
-  useEffect(() => {
-    // if (clientMassege !== '') {
-    //   setTimeout(() => {
-    //     dispatch(finishOrder());
-    //   }, 5000);
-    // }
-  }, [clientMassege]);
-
-  console.log('clientMassege', clientMassege)
-
   return (
     <div className='btn-order'>
-
       {clientMassege !== '' ?
-        <div className='client-massege'>
-          {clientMassege}
+        <div>
+          <div className='client-massege'>
+            {clientMassege}
+          </div>
+          <div>
+
+            <button className='nvg-older-order' onClick={()=>navigate('/purchasehistory')} >
+              {translate('View orders')}
+            </button>
+          </div>
         </div>
         :
         <Button variant="contained" color="primary" onClick={handleFinishOrder}>

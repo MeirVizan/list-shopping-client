@@ -9,7 +9,8 @@ const englishToHebrew =
   { name: "Cheeses", heb: "גבינות" },
   { name: "Vegetables and Fruits", heb: "ירקות ופירות" },
   { name: "Meat and Fish", heb: "בשר ודגים" },
-  { name: "Pastries", heb: "מאפים" }]
+  { name: "Pastries", heb: "מאפים" },
+  { name: "View orders", heb: "צפייה בהזמנות" },]
   ;
 
 

@@ -29,6 +29,14 @@ export const fetchPurchases = createAsyncThunk('shopping/fetchPurchases', async 
   return response.data;
 });
 
+export const finishOrder = createAsyncThunk('shopping/finishOrder', async (_, { getState }) => {
+  const state = getState() as { shopping: ShoppingState };
+  const response = await axios.post('http://localhost:5000/api/order', { products: state.shopping.products });
+  console.log('Order sent:', response.data);
+  return response.data;
+});
+
+
 const shoppingSlice = createSlice({
   name: 'shopping',
   initialState,
@@ -42,28 +50,21 @@ const shoppingSlice = createSlice({
       }
       state.totalItems += 1;
     },
-    finishOrder: (state) => {
-        axios.post('http://localhost:5000/api/order', {"products":state.products})
-            .then((response) => {
-                console.log('Order sent:', response.data);
-                state.products = [];
-                state.totalItems = 0;
-                state.clientMassege = 'ההזמנה בוצעה בהצלחה';
-            })
-            .catch((error) => {
-                console.error('Error sending order:', error);
-            });
-    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCategories.fulfilled, (state, action) => {
       state.categories = action.payload;
     }).addCase(fetchPurchases.fulfilled, (state, action) => {
       state.purchases = action.payload;
+      state.clientMassege = '';
+    }).addCase(finishOrder.fulfilled, (state) => {
+      state.products = [];
+      state.totalItems = 0;
+      state.clientMassege = 'ההזמנה בוצעה בהצלחה';
     });
-    
   },
+
 });
 
-export const { addProduct, finishOrder } = shoppingSlice.actions;
+export const { addProduct } = shoppingSlice.actions;
 export default shoppingSlice.reducer;

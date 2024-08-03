@@ -13,6 +13,7 @@ export const ProductInput: React.FC = () => {
   const categories = useSelector((state: RootState) => state.shopping.categories);
   const dispatch = useDispatch();
 
+  // This function is called when the form is submitted.
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (productName && category) {

@@ -1,7 +1,10 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+// This is the URL of the herokuapp server
 // const apiUrl = 'https://shopping-list-server-eeded9691076.herokuapp.com';
+
+// This is the URL of the local server
 const localApiUrl = 'http://localhost:5000';
 
 

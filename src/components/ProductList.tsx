@@ -5,9 +5,12 @@ import './ComponentStyle.css';
 import ProductOfCategory from './ProductOfCategory';
 import { groupBy } from './utils';
 
+// This component is responsible for displaying the list of products.
 export const ProductList: React.FC = () => {
+  
   const products = useSelector((state: RootState) => state.shopping.products);
   const prodectSaperedly = groupBy(products, 'categoryId');
+  
 
   return (
     <div className='product-list-wapper'>

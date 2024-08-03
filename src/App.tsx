@@ -14,15 +14,18 @@ import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
 import { CssBaseline } from '@mui/material';
 
+// Create a cache for the RTL direction
 const cacheRtl = createCache({
   key: 'muirtl',
   stylisPlugins: [prefixer, rtlPlugin],
 });
 
+
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
+    // Fetch categories from the server
     dispatch(fetchCategories());
 
   }, []);

@@ -7,6 +7,7 @@ import { AppDispatch, RootState } from '../store';
 import './ComponentStyle.css';
 import { useNavigate } from "react-router-dom";
 
+// This component is responsible for displaying the finish order button.
 export const FinishOrderButton: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const clientMassege = useSelector((state: RootState) => state.shopping.clientMassege);

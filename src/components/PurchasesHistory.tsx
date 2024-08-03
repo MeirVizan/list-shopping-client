@@ -9,7 +9,7 @@ import { Container } from '@mui/material';
 import { translate } from './utils';
 import './ComponentStyle.css';
 
-
+// This component is responsible for displaying the purchase history of the user.
 const PurchasesHistory: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const purchases = useSelector((state: RootState) => state.shopping.purchases);

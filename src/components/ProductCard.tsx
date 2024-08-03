@@ -9,6 +9,7 @@ interface ProductProps {
     items: any[]
 }
 
+// This component is responsible for displaying the products in the shopping list.
 const ProductCard: React.FC<ProductProps> = ({ items, categoryId }) => {
 
     const categories = useSelector((state: RootState) => state.shopping.categories);

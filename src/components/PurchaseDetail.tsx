@@ -16,7 +16,7 @@ interface PurchaseProps {
     date: Date;
 }
 
-
+// This component is responsible for displaying the details of a purchase.
 const PurchaseDetail = ({ purchase, date }:PurchaseProps) => {
 
 const prodectSaperedly = groupBy(purchase, 'categoryId');

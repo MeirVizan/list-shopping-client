@@ -1,7 +1,9 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const apiUrl = 'https://shopping-list-server-eeded9691076.herokuapp.com';
+// const apiUrl = 'https://shopping-list-server-eeded9691076.herokuapp.com';
+const localApiUrl = 'http://localhost:5000';
+
 
 interface Product {
   name: string;
@@ -30,19 +32,22 @@ const initialState: ShoppingState = {
   clientMassege: '',
 };
 
+// This function is used to fetch the categories from the server
 export const fetchCategories = createAsyncThunk('shopping/fetchCategories', async () => {
-  const response = await axios.get(`${apiUrl}/api/categories`);
+  const response = await axios.get(`${localApiUrl}/api/categories`);
   return response.data;
 });
 
+// This function is used to fetch the purchases from the server
 export const fetchPurchases = createAsyncThunk('shopping/fetchPurchases', async () => {
-  const response = await axios.get(`${apiUrl}/api/purchases`);
+  const response = await axios.get(`${localApiUrl}/api/purchases`);
   return response.data;
 });
 
+// This function is used to finish the order
 export const finishOrder = createAsyncThunk('shopping/finishOrder', async (_, { getState }) => {
   const state = getState() as { shopping: ShoppingState };
-  const response = await axios.post(`${apiUrl}/api/order`, { products: state.shopping.products });
+  const response = await axios.post(`${localApiUrl}/api/order`, { products: state.shopping.products });
   return response.data;
 });
 

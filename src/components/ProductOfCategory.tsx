@@ -4,6 +4,7 @@ interface ProductProps {
     prodectSaperedly: any;
 }
 
+// This component is responsible for displaying the list of products.
 const ProductOfCategory = ({ prodectSaperedly }: ProductProps) => {
 
     return (

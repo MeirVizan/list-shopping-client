@@ -6,7 +6,7 @@ import { addProduct } from '../store/shoppingSlice';
 import './ComponentStyle.css';
 import { translate } from './utils';
 
-
+// This component is responsible for adding a new product to the shopping list.
 export const ProductInput: React.FC = () => {
   const [productName, setProductName] = useState('');
   const [category, setCategory] = useState<number>(0);

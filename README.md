@@ -7,7 +7,6 @@ This project provides a frontend for a shopping list application where users can
 - Add products to a shopping list with categories.
 - View a list of all added products along with their quantities.
 - See a total count of all items in the shopping list.
-- View historical purchases in a detailed format.
 - Responsive design for mobile and desktop usage.
 
 ## Technologies Used
@@ -17,6 +16,10 @@ This project provides a frontend for a shopping list application where users can
 - **Redux Toolkit**: For state management.
 - **Material-UI**: A popular React UI framework with ready-to-use components that follow Google's Material Design.
 - **Axios**: Promise-based HTTP client for the browser and node.js.
+
+## Additional developments
+- View historical purchases in a detailed format.
+
 
 ## Getting Started
 
